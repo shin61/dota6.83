@@ -1,0 +1,2 @@
+function maomaomao takes nothing returns nothing
+endfunction

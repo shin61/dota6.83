@@ -1,0 +1,158 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "type": "shell",
+    "tasks": [
+        {
+            "label": "运行",
+            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
+            "args": [
+                ".\\tools\\运行.lua",
+                "${workspaceRoot}"
+            ]
+        },
+        {
+            "label": "配置",
+            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
+            "args": [
+                ".\\tools\\配置.lua",
+                "${workspaceRoot}"
+            ]
+        },
+        {
+            "label": "Lua语法检查",
+            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
+            "args": [
+                ".\\tools\\语法检查.lua",
+                "${workspaceRoot}"
+            ],
+            "problemMatcher": {
+                "owner": "lua",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "message": 3
+                }
+            }
+        },
+        {
+            "label": "Lni",
+            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/w2l.exe\"",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            },
+            "args": [
+                "lni",
+                "${workspaceRoot}/MoeHero.w3x",
+                "${workspaceRoot}"
+            ]
+        },
+        {
+            "label": "Obj",
+            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/w2l.exe\"",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            },
+            "args": [
+                "obj",
+                "${workspaceRoot}",
+                "${workspaceRoot}/MoeHero.w3x"
+            ]
+        },
+        {
+            "label": "Slk",
+            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/w2l.exe\"",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            },
+            "args": [
+                "slk",
+                "${workspaceRoot}",
+                "${workspaceRoot}/MoeHero.w3x"
+            ]
+        },
+        {
+            "label": "🔍Lua自动检查",
+            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
+            "args": [
+                ".\\tools\\语法检查.lua",
+                "${workspaceRoot}",
+                "--watch"
+            ],
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "lua",
+                "fileLocation": [
+                    "absolute"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "message": 3
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "\\[Watch\\] File change detected\\.",
+                    "endsPattern": "\\[Watch\\] Complete\\."
+                }
+            }
+        },
+        {
+            "label": "运行Lua代码",
+            "command": "chcp 65001 && echo 需要注意YDWE的Lua无法在这里运行，原生的可以 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            },
+            "args": [
+                "${file}"
+            ]
+        },
+        {
+            "label": "jass语法检查",
+            "command": "chcp 65001 && echo 根目录路径过长会出错 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            },
+            "args": [
+                ".\\tools\\jass语法检查.lua",
+                "${workspaceRoot}",
+                "--watch"
+            ]
+        },
+        {
+            "label": "jass编译",
+            "command": "chcp 65001 && echo 根目录路径过长会出错 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            },
+            "args": [
+                ".\\tools\\jass语法检查.lua",
+                "${workspaceRoot}"
+            ]
+        }
+    ]
+}
