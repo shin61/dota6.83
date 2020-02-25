@@ -3,7 +3,7 @@ setmetatable(dialog, dialog)
 
 --结构
 local d = {}
-dialog.__index = t
+dialog.__index = d
 
 local function init(text)
     local d = {}

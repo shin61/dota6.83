@@ -22,8 +22,8 @@ function e:charge(angle,dis,time,refresh_time,charge,destroy)
         local t = timer.create()
         self.t = t
         t:start(refresh_time or 0.03,true,function ()
-            local x = japi.EXGetEffectX(self.handle) + Cos( angle * 3.14159/180 ) * speed
-            local y = japi.EXGetEffectY(self.handle) + Sin( angle * 3.14159/180 ) * speed
+            local x = japi.EXGetEffectX(self.handle) + math.cosBJ( angle ) * speed
+            local y = japi.EXGetEffectY(self.handle) + math.sinBJ( angle ) * speed
             self:setEffectXY(x,y)
             t.dis = (t.dis or 0) + speed
             if t.dis >= dis then
@@ -40,6 +40,14 @@ function e:charge(angle,dis,time,refresh_time,charge,destroy)
     end
 end
 
+function e:getType()
+    if self.ref then
+        return 'hero'
+    else
+        return 'point'
+    end
+end
+
 --刷新特效,以后修正变身问题需要的功能
 function e:refresh()
     if self.ref then
@@ -51,6 +59,11 @@ function e:refresh()
         DestroyEffect(self.handle)
         self.hand = AddSpecialEffectTarget(self.file,self.unit,self.ref)
     end
+end
+
+function e:immediatelyDestroy()
+    self:setZ(99999)
+    self:destroy()
 end
 
 function e:destroy(time)
@@ -97,7 +110,7 @@ function e:setEffectXY(x,y)
     end
 end
 
-function e.create(file,x,y)
+function e.create(file,x,y,angle)
     if not y then
         local hero = x
         y = GetUnitY(hero)
@@ -107,6 +120,7 @@ function e.create(file,x,y)
     e.file = file
     table.insert( effect, e )
     setmetatable(e, effect)
+    e:setAngle(angle or 270)
     return e
 end
 
