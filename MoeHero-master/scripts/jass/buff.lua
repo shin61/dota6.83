@@ -40,7 +40,6 @@ local function refreshUnitEffect(handle,effs)
             end
         else
             --无buff
-            data = data.datas or data.defeatdatas
             if effs[id] then
                 --有特效
                 for _,e in ipair(effs[id]) do
