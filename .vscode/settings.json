@@ -1,7 +1,8 @@
 {
     "Lua.diagnostics.globals": [
         "current_line",
-        "buff"
+        "buff",
+        "backhome"
     ],
     "Lua.diagnostics.disable": [
         "undefined-global"

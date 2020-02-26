@@ -70,12 +70,8 @@ function e:destroy(time)
     local t = timer.create()
     t:start(time or 0,false,function()
         DestroyEffect(self.handle)
-        for i=1,#effect do
-            if effect[i] == self then
-                table.remove(effect,i)
-                break
-            end
-        end
+        local key = table.getkey(effect,self)
+        table.remove(effect,key)
         t:destroy()
     end
     )
