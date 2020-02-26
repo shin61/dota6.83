@@ -4,6 +4,8 @@ buff = {}
 local units = {}
 --已经被注册的bufftype
 local bufftypes = {}
+--所有buff池
+local all_defeat_bufftypes = {}
 
 function buff.addDefeatBuff(id,datas)
     bufftypes[id].defeatdatas = datas
@@ -11,6 +13,21 @@ end
 
 function buff.addBuff(id,datas)
     bufftypes[id].datas = datas
+end
+
+function buff.abilityBindingBuffs(id,buffids)
+    ac.game.event '英雄-学习技能' (function (trg,hero,abilityid)
+        if id == base.id2string(abilityid) then
+            local datas = all_defeat_bufftypes[id]
+            buff.addBuff(id,all_defeat_bufftypes[datas])
+            trg:remove()
+        end
+    end)
+end
+
+--初始化默认buff
+local function init()
+    -- buff.addDefeatBuff('B000'，{{file.origin},{file.origin}})
 end
 
 local function refreshUnitEffect(handle,effs)
@@ -43,7 +60,9 @@ local function refreshUnitEffect(handle,effs)
             if effs[id] then
                 --有特效
                 for _,e in ipair(effs[id]) do
-                    if e:getType() == 'point' and e.data[4] then
+                    --英雄绑定特效一定不会有data[4]
+                    -- if e:getType() == 'point' and e.data[4] then
+                    if e.data[4] then
                         e:immediatelyDestroy()
                     else
                         e:destroy()
