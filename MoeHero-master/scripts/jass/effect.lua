@@ -73,6 +73,15 @@ function e:destroy(time)
         local key = table.getkey(effect,self)
         table.remove(effect,key)
         t:destroy()
+        --dota变身刷新特效列表
+        if self.ref then
+            if game.isPlayerHero(self.unit) then
+                key = table.getkey(game.allPlayer.refreshEffs,self)
+                if key > 0 then
+                    table.remove( game.allPlayer.refreshEffs, e )
+                end
+            end
+        end
     end
     )
 end
@@ -127,6 +136,13 @@ function e.create_target(file,unit,ref)
     e.file = file
     table.insert( effect, e )
     setmetatable(e, effect)
+
+    --dota变身刷新特效列表
+    if game.isPlayerHero(unit) then
+        game.allPlayer.refreshEffs = game.allPlayer.refreshEffs or {}
+        table.insert( game.allPlayer.refreshEffs, e )
+    end
+
     return e
 end
 

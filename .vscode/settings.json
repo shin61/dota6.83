@@ -5,6 +5,7 @@
         "backhome"
     ],
     "Lua.diagnostics.disable": [
-        "undefined-global"
+        "undefined-global",
+        "ambiguity-1"
     ]
 }

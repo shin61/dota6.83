@@ -25,6 +25,10 @@ function game.getPlayerHero(p)
     return game.allPlayer[GetPlayerId(p) + 1].hero
 end
 
+function game.isPlayerHero(unit)
+    return game.getPlayerHero(GetOwningPlayer(unit)) == unit
+end
+
 function game.setPlayerHero(p,hero)
     game.allPlayer[GetPlayerId(p) + 1].hero = hero
 end
