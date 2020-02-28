@@ -33,6 +33,10 @@ function game.setPlayerHero(p,hero)
     game.allPlayer[GetPlayerId(p) + 1].hero = hero
 end
 
+--dota6.83变身指令
+--由于公司代码已经有现有接口,这里只把需要用的的命令ID做个列表
+--{"metamorphosis","bearform","unbearform","chemicalrage","robogoblin","unrobogoblin","unravenform","ravenform"}
+
 --初始化玩家
 local function init()
     for i=1,15 do
