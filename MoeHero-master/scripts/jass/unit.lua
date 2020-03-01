@@ -158,8 +158,8 @@ function u:setY(y)
 end
 
 function u:move(angle,dis)
-    self:setX(self.getX() + math.cosBJ( angle ) * dis)
-    self:setY(self.getY() + math.sinBJ( angle ) * dis)
+    self:setX(self:getX() + math.cosBJ( angle ) * dis)
+    self:setY(self:getY() + math.sinBJ( angle ) * dis)
 end
 
 function u:setPostion(x,y)
@@ -193,11 +193,11 @@ end
 
 function u:pauseTag(state)
     if state then
-        self.pauseTag = (self.pauseTag or 0) + 1
+        self.pauseTagNumber = (self.pauseTagNumber or 0) + 1
     else
-        self.pauseTag = math.min( (self.pauseTag or 0) - 1,0 )
+        self.pauseTagNumber = math.min( (self.pauseTagNumber or 0) - 1,0 )
     end
-    PauseUnit(self.handle,self.pauseTag > 0)
+    PauseUnit(self.handle,self.pauseTagNumber > 0)
 end
 
 function u:pauseEX(state)
